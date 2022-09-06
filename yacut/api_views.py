@@ -8,6 +8,7 @@ from .error_handlers import InvalidAPIUsageError
 from .models import URL_map
 from .utils import get_unique_short_id
 
+pattern = r'^[a-z]+://[^\/\?:]+(:[0-9]+)?(\/.*?)?(\?.*)?$'
 
 @app.route('/api/id/', methods=['POST'])
 def create_id():
@@ -17,7 +18,7 @@ def create_id():
     if 'url' not in data:
         raise InvalidAPIUsageError('"url" является обязательным полем!')
     if not match(
-            r'^[a-z]+://[^\/\?:]+(:[0-9]+)?(\/.*?)?(\?.*)?$', data['url']):
+            pattern, data['url']):
         raise InvalidAPIUsageError('Указан недопустимый URL')
     if not data.get('custom_id'):
         data['custom_id'] = get_unique_short_id()
