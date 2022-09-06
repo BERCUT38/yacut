@@ -10,6 +10,7 @@ from .utils import get_unique_short_id
 
 pattern = r'^[a-z]+://[^\/\?:]+(:[0-9]+)?(\/.*?)?(\?.*)?$'
 
+
 @app.route('/api/id/', methods=['POST'])
 def create_id():
     data = request.get_json(silent=True)

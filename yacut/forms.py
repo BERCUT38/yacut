@@ -9,7 +9,7 @@ from .models import URL_map
 class URL_mapForm(FlaskForm):
     original_link = URLField(
         'Введите ссылку', validators=[
-            DataRequired(message='Обязательное поле'),URL(
+            DataRequired(message='Обязательное поле'), URL(
                 require_tld=True, message=('Некорректный URL'))])
     custom_id = StringField(
         'Ваш вариант короткой ссылки', validators=[
